@@ -19,6 +19,7 @@ func main() {
 	lab, btm, entryLine := myapp.changeTitle()
 	//自上而下按顺序展示，在容器中
 	w.SetContent(container.NewVBox(lab, entryLine, btm))
+	//设置大小
 	w.Resize(fyne.Size{Height: 500, Width: 500})
 	//w.ShowAndRun() //程序在此停止，直到关闭再运行其他的。
 	//展示视窗
