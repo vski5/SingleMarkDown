@@ -29,14 +29,13 @@ func main() {
 }
 func (myApp *myApp) changeTitle() (*widget.Label, *widget.Button, *widget.Entry) {
 
-	lab := widget.NewLabel("new label")
-	myApp.lab = lab
+	myApp.lab = widget.NewLabel("new label") //直接将label组件赋值给myApp.lab
 
 	entryLine := widget.NewEntry()
 
 	btm := widget.NewButton("i'm button", func() {
-		myApp.lab.SetText(entryLine.Text)
+		myApp.lab.SetText(entryLine.Text) //将struct里的label赋值为输入行中的值
 	})
 
-	return lab, btm, entryLine
+	return myApp.lab, btm, entryLine
 }
