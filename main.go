@@ -21,7 +21,7 @@ func main() {
 	//自左而右按顺序展示，在容器中
 	w.SetContent(container.NewHSplit(entryWindow, showWindow))
 	//设置大小
-	w.Resize(fyne.Size{Height: 800, Width: 800})
+	w.Resize(fyne.Size{Height: 500, Width: 500})
 
 	//w.ShowAndRun() //程序会在此停止，直到关闭再运行其他的。
 
