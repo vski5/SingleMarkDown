@@ -26,7 +26,8 @@ func main() {
 	w.Resize(fyne.Size{Height: 500, Width: 500})
 
 	/*添加中文支持，来自lxgw/LxgwWenKai，霞鹜文楷。
-	设置键值对，FYNE_FONT是fyne内的字体设置，必须给这个变量key设置value  */
+	设置键值对，FYNE_FONT是fyne内的字体设置，必须给这个变量key设置value。
+	方法失败了，白天再看https://github.com/fyne-io/fyne/issues/2660   */
 	os.Setenv("FYNE_FONT", "./fyne_ttf/LXGWWenKai-Light.ttf")
 
 	//w.ShowAndRun() //程序会在此停止，直到关闭再运行其他的。
