@@ -7,35 +7,40 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-type myApp struct {
-	lab *widget.Label
+type myAppConfig struct {
+	entryWindow *widget.Entry
+	showWindow  *widget.RichText
 }
 
 func main() {
 	a := app.New()
-	w := a.NewWindow("创造一个window,此处是window的标题")
+	w := a.NewWindow("SingleMarkDown")
 	//w.SetContent(widget.NewLabel("我是标签,属于widget(组件)"))
-	var myapp myApp
-	lab, btm, entryLine := myapp.changeTitle()
-	//自上而下按顺序展示，在容器中
-	w.SetContent(container.NewVBox(lab, entryLine, btm))
+	var myApp myAppConfig
+	entryWindow, showWindow := myApp.makeUI()
+	//自左而右按顺序展示，在容器中
+	w.SetContent(container.NewHBox(entryWindow, showWindow))
 	//设置大小
-	w.Resize(fyne.Size{Height: 500, Width: 500})
-	//w.ShowAndRun() //程序在此停止，直到关闭再运行其他的。
+	w.Resize(fyne.Size{Height: 800, Width: 800})
+
+	//w.ShowAndRun() //程序会在此停止，直到关闭再运行其他的。
+
 	//展示视窗
 	w.Show()
 	//运行app //一个程序只能有一个运行。
 	a.Run()
 }
-func (myApp *myApp) changeTitle() (*widget.Label, *widget.Button, *widget.Entry) {
+func (myApp *myAppConfig) makeUI() (*widget.Entry, *widget.RichText) {
+	//编辑窗口
+	myAppEntryWindow := widget.NewMultiLineEntry()
+	//解析MD文档的展示窗口
+	myAppShowWindow := widget.NewRichTextFromMarkdown("")
+	//将两个窗口的特质分别赋值给struct，使其实例化。
+	myApp.entryWindow = myAppEntryWindow
+	myApp.showWindow = myAppShowWindow
 
-	myApp.lab = widget.NewLabel("new label") //直接将label组件赋值给myApp.lab
+	//展示窗口跟踪编辑窗口，实时刷新
+	myAppEntryWindow.OnChanged = myAppShowWindow.ParseMarkdown
 
-	entryLine := widget.NewEntry()
-
-	btm := widget.NewButton("i'm button", func() {
-		myApp.lab.SetText(entryLine.Text) //将struct里的label赋值为输入行中的值
-	})
-
-	return myApp.lab, btm, entryLine
+	return myApp.entryWindow, myApp.showWindow
 }
