@@ -19,7 +19,7 @@ func main() {
 	var myApp myAppConfig
 	entryWindow, showWindow := myApp.makeUI()
 	//自左而右按顺序展示，在容器中
-	w.SetContent(container.NewHBox(entryWindow, showWindow))
+	w.SetContent(container.NewHSplit(entryWindow, showWindow))
 	//设置大小
 	w.Resize(fyne.Size{Height: 800, Width: 800})
 
