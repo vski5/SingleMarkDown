@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
@@ -22,6 +24,10 @@ func main() {
 	w.SetContent(container.NewHSplit(entryWindow, showWindow))
 	//设置大小
 	w.Resize(fyne.Size{Height: 500, Width: 500})
+
+	/*添加中文支持，来自lxgw/LxgwWenKai，霞鹜文楷。
+	设置键值对，FYNE_FONT是fyne内的字体设置，必须给这个变量key设置value  */
+	os.Setenv("FYNE_FONT", "./fyne_ttf/LXGWWenKai-Light.ttf")
 
 	//w.ShowAndRun() //程序会在此停止，直到关闭再运行其他的。
 
