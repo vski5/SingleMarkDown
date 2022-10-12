@@ -27,6 +27,8 @@ func main() {
 
 	//展示视窗
 	w.Show()
+	//展示视窗在屏幕中央
+	w.CenterOnScreen()
 	//运行app //一个程序只能有一个运行。
 	a.Run()
 }
